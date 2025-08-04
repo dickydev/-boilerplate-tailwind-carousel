@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <title>Carousel</title>
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="w-full max-w-xl relative overflow-hidden">
+      <div
+        class="flex transition-transform duration-500 ease-in-out"
+        style="transform: translateX(0%)"
+        id="carousel-track"
+      >
+        <div class="min-w-full flex-shrink-0">
+          <img
+            src="./assets/1.jpg"
+            class="w-full h-64 object-cover rounded-lg"
+            alt="Slide 1"
+          />
+        </div>
+        <div class="min-w-full flex-shrink-0">
+          <img
+            src="./assets/2.jpeg"
+            class="w-full h-64 object-cover rounded-lg"
+            alt="Slide 2"
+          />
+        </div>
+        <div class="min-w-full flex-shrink-0">
+          <img
+            src="./assets/3.jpeg"
+            class="w-full h-64 object-cover rounded-lg"
+            alt="Slide 3"
+          />
+        </div>
+      </div>
+
+      <button
+        id="prev"
+        class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white w-12 h-12 rounded-full shadow flex items-center justify-center cursor-pointer"
+      >
+        <i class="fas fa-chevron-left text-gray-700"></i>
+      </button>
+      <button
+        id="next"
+        class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white w-12 h-12 rounded-full shadow flex items-center justify-center cursor-pointer"
+      >
+        <i class="fas fa-chevron-right text-gray-700"></i>
+      </button>
+    </div>
+
+    <script>
+      const track = document.getElementById("carousel-track");
+      const prev = document.getElementById("prev");
+      const next = document.getElementById("next");
+      let index = 0;
+      const totalSlides = track.children.length;
+
+      function updateSlide() {
+        track.style.transform = `translateX(-${index * 100}%)`;
+      }
+
+      next.addEventListener("click", () => {
+        index = (index + 1) % totalSlides;
+        updateSlide();
+      });
+
+      prev.addEventListener("click", () => {
+        index = (index - 1 + totalSlides) % totalSlides;
+        updateSlide();
+      });
+    </script>
+  </body>
+</html>
